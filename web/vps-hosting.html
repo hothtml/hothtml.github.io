@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VPS Hosting - User Friendly VPS Servers!</title>
+<meta name="description" content="User friendly VPS servers for superb price!">
+<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="css/jquery-ui-1.8.18.css" type="text/css">
+<script src="http://ajax.googlesapi.com/ajax/libs/jquery/jquery-1.7.1.min.js"></script>
+<script src="http://ajax.googlesapi.com/ajax/libs/jquery/jquery-ui-1.8.18.min.js"></script>
+<script src="js/js.js"></script>
+<!--[if IE]> <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+<div class="content">
+  <div class="header"> <a href="index.html"><img src="images/logo.png" alt="logo" class="logo" /></a>
+    <div class="menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="web-hosting.html" class="selected">Features</a></li>
+        <li><a href="order.html">Order</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="banner">
+    <div class="ribbon"></div>
+    <div class="shadow_mini"></div>
+    <div class="bg_mini">
+      <h1>VPS Hosting</h1>
+      <h2>VPS hosting features and specs</h2>
+      <div class="bbuttons_mini"> <a href="http://www.vps.me" target="_blank">
+        <input type="button" class="banner_signup r2 btn_tick" value="Sign up now">
+        </a>
+        <input type="button" class="banner_livechat" value="Live chat">
+        <div class="banner_livechat_chat"></div>
+      </div>
+    </div>
+  </div>
+  <div class="smenu">
+    <ul>
+      <li><a href="web-hosting.html">Shared hosting features</a></li>
+      <li><a href="vps-hosting.html" class="selected">VPS hosting features</a></li>
+      <li><a href="reseller-hosting.html">Reseller hosting features</a></li>
+    </ul>
+  </div>
+  <script>
+                $(function() {
+                    var data = '[{"planId":1,"cpu":"2.0 GHz","ram":"256 MB","hdd":"70 GB","bandwidth":"100 Mb","price":"$20.00"},{"planId":2,"cpu":"2.5 GHz","ram":"512 MB","hdd":"100 GB","bandwidth":"200 Mb","price":"$29.00"},{"planId":3,"cpu":"3.0 GHz","ram":"1024 MB","hdd":"100 GB","bandwidth":"100 GB","price":"$50.00"},{"planId":4,"cpu":"3.6 GHz","ram":"2 GB","hdd":"200 GB","bandwidth":"200 GB","price":"$70.00"},{"planId":5,"cpu":"4.0 GHz","ram":"4 GB","hdd":"500 GB","bandwidth":"100 TB","price":"$99.00"},{"planId":6,"cpu":"4.6 GHz","ram":"8 GB","hdd":"700 GB","bandwidth":"200 TB","price":"$200.00"}]';
+
+                    //var data = '[{"planId":1,"cpu":"2.0 GHz","ram":"256 MB","hdd":"70 GB","bandwidth":"100 Mb","price":"$20.00"},{"planId":2,"cpu":"2.5 GHz","ram":"512 MB","hdd":"100 GB","bandwidth":"200 Mb","price":"$29.00"},{"planId":3,"cpu":"3.0 GHz","ram":"1024 MB","hdd":"100 GB","bandwidth":"100 GB","price":"$50.00"},{"planId":4,"cpu":"3.6 GHz","ram":"2 GB","hdd":"200 GB","bandwidth":"200 GB","price":"$70.00"}]';
+
+                    var obj = $.parseJSON(data);
+                    var max = obj.length;
+
+                    $('#cpu').html(obj[0].cpu);
+                    $('#ram').html(obj[0].ram);
+                    $('#hdd').html(obj[0].hdd);
+                    $('#bandwidth').html(obj[0].bandwidth);
+                    $('#price').html(obj[0].price);
+                    $('#planid').val(obj[0].planId);
+                    var slider = $( "#sliders" ).slider({
+                        min: 1,
+                        value: 1,
+                        max: max,
+                        slide: function( event, ui ) {
+                            $('#cpu').html(obj[ui.value-1].cpu);
+                            $('#ram').html(obj[ui.value-1].ram);
+                            $('#hdd').html(obj[ui.value-1].hdd);
+                            $('#bandwidth').html(obj[ui.value-1].bandwidth);
+                            $('#price').html(obj[ui.value-1].price);
+                            $('#planid').val(obj[ui.value-1].planId);
+                            $('.sl_box').removeClass('active');
+                            $('#slb_'+ui.value).addClass('active');
+                            
+                        }
+                    });
+                    var div_len = $('#sliders').width();
+                    var spacing = div_len / (max - 1);
+                    for(var i = 0; i < max; i++){
+                        var num = i + 1;
+                        var margin = spacing * i + 25;
+                        var lnmargin = spacing * i + 48;
+                        $('.slider_bg').append('<div class="sl_box" id="slb_'+num+'" style="margin-left:'+margin+'px">'+num+'</div>');
+                        $('.slider_bg').append('<div class="ln" style="margin-left:'+lnmargin+'px"></div>');
+                        if(i == 0){
+                            $('#slb_1').addClass('active');
+                        }
+                    }
+
+                    $( ".sl_box" ).click(function() {
+                        var id = $(this).attr('id').replace('slb_', '');
+                        slider.slider( "value", id);
+                        $( ".sl_box" ).removeClass('active');
+                        $(this).addClass('active');
+                    });
+                });
+            </script>
+  <div class="cl"></div>
+  <div class="border">
+    <div class="info r5">
+      <div class="order_vps">
+        <div class="slider_title">Configure & order your VPS hosting</div>
+        <div class="slider_bg">
+          <div id="sliders"></div>
+        </div>
+        <br />
+        <br />
+        <div class="params">
+          <table class="plansselect">
+            <tr>
+              <td><div class="box"> <span>CPU:</span>
+                  <div id="cpu"></div>
+                </div></td>
+              <td><div class="box"> <span>RAM:</span>
+                  <div id="ram"></div>
+                </div></td>
+              <td><div class="box"> <span>Disk space:</span>
+                  <div id="hdd"></div>
+                </div></td>
+              <td><div class="box"> <span>Bandwidth:</span>
+                  <div id="bandwidth"></div>
+                </div></td>
+              <td><div class="box"> <span>Monthly price:</span>
+                  <div id="price"></div>
+                </div></td>
+            </tr>
+          </table>
+          <div class="after_table_line"></div>
+        </div>
+        <input type="hidden" name="planid" id="planid" value="1">
+        <a href="http://www.vps.me" target="_blank">
+        <input type="button" class="banner_signup r2 btn_tick btorder" value="Order!">
+        </a>
+        <div class="cl"></div>
+      </div>
+    </div>
+    <div class="cl"></div>
+  </div>
+  <div class="cl"></div>
+  <div class="shadow_after_banner"></div>
+  <div class="cl"></div>
+  <div class="border">
+    <div class="info r5">
+      <div class="article">
+        <div class="title">VPS Hosting</div>
+        <p>We provide fast, qality and easy to use VPS servers for our clients. All of our <a href="http://www.vps.me" target="_blank">VPS hosting</a> packages includes free setup, many pre-installed platforms and everything you need for your website to run smoothly!</p>
+      </div>
+      <div class="cl"></div>
+      <div class="boxes2">
+        <div class="box">
+          <div class="title">
+            <div class="img"><img src="images/data/1.png" alt=""></div>
+            More Power! </div>
+          <div class="text">We use latest generation network adapters, routers and switches to provide high speed and power to the websites!</div>
+        </div>
+        <div class="box">
+          <div class="title">
+            <div class="img"><img src="images/data/2.png" alt=""></div>
+            Quality Support </div>
+          <div class="text">Our highly trained staff members will always by there for you whenever you need help! Just contact us over the website or control panel!</div>
+        </div>
+        <div class="box nomarginr">
+          <div class="title">
+            <div class="img"><img src="images/data/3.png" alt=""></div>
+            Global! </div>
+          <div class="text">There is no differences where you are from - we accept clients from all over the wold withour any restrictions or special needs!</div>
+        </div>
+        <div class="box">
+          <div class="title">
+            <div class="img"><img src="images/data/4.png" alt=""></div>
+            Crystal Clear </div>
+          <div class="text">All of our hosting plans are crystal clear - you can clearly see what you get and you will never get less than promised!</div>
+        </div>
+        <div class="box">
+          <div class="title">
+            <div class="img"><img src="images/data/1.png" alt=""></div>
+            99,9% Uptime </div>
+          <div class="text">From now on, we are offering unbeatable 99.99% uptime! No more unexpected dowtime for your business!</div>
+        </div>
+        <div class="box nomarginr"> <br>
+          <br>
+          <a href="http://www.vps.me" target="_blank"><img src="images/vpsme.png" alt="VPS Hosting"></a> </div>
+        <div class="cl"></div>
+      </div>
+      <div class="cl"></div>
+    </div>
+    <div class="cl"></div>
+  </div>
+  <div class="shadow_after_banner"></div>
+</div>
+<div class="footer">
+  <div class="content">
+    <ul>
+      <li class="title">Hosting</li>
+      <li><a href="web-hosting.html">Shared Hosting</a></li>
+      <li><a href="http://www.youhosting.com" target="_blank">Reseller Hosting</a></li>
+      <li><a href="http://www.vps.me" target="_blank">VPS Hosting</a></li>
+    </ul>
+    <ul>
+      <li class="title">Services</li>
+      <li><a href="order.html">Order Now</a></li>
+      <li><a href="terms.html">Terms</a></li>
+      <li><a href="http://www.hosting24.com" target="_blank">Web Hosting</a></li>
+    </ul>
+    <ul>
+      <li class="title">Information</li>
+      <li><a href="support.html">Support Centre</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="" target="_blank" id="client-login-link">Client Login</a></li>
+	  <li><a href="sitemap.html"><img src="images/sitemap.png"></a></li>
+    </ul>
+    <div class="logo"> <a href="#"><img src="images/logo_grey.png" alt=""></a> <span>&COPY; 2012 Hosting.com <a href="http://www.hostinger.com" target="_blank">Web Hosting</a></span>
+      <div class="social"> <a href="#"><img src="images/footer_facebook.png" alt=""></a>
+        <div class="delim"></div>
+        <a href="#"><img src="images/footer_twitter.png" alt=""></a>
+        <div class="delim"></div>
+        <a href="http://www.hostinger.com" target="_blank"><img src="images/hostinger.png" alt=""></a> </div>
+    </div>
+  </div>
+  <div class="cl"></div>
+</div>
+</body>
+</html>
